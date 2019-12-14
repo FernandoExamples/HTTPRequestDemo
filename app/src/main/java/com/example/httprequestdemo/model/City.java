@@ -12,6 +12,8 @@ public class City {
     @SerializedName("main")
     private Temperature temperature;
 
+    private String countyCode;
+
     public City() {
     }
 
@@ -19,6 +21,13 @@ public class City {
         this.id = id;
         this.name = name;
         this.temperature = temperature;
+    }
+
+    public City(int id, String name, Temperature temperature, String countyCode) {
+        this.id = id;
+        this.name = name;
+        this.temperature = temperature;
+        this.countyCode = countyCode;
     }
 
     public int getId() {
@@ -45,7 +54,15 @@ public class City {
         this.temperature = temperature;
     }
 
-    public static Temperature parseJSON(String json){
+    public String getCountyCode() {
+        return countyCode;
+    }
+
+    public void setCountyCode(String countyCode) {
+        this.countyCode = countyCode;
+    }
+
+    public static Temperature parseTempJSON(String json){
         Gson gson = new GsonBuilder().create();
         Temperature temp = gson.fromJson(json, Temperature.class);
         return temp;
